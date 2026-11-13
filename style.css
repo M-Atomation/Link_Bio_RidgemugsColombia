@@ -1,18 +1,22 @@
-/* VARIABLES GLOBALES */
+/* ==========================================================================
+   VARIABLES GLOBALES
+   ========================================================================== */
 :root {
   --color-fondo: #f7f8fa;
-    --color-texto: #2d3436;
-    --color-primario: #4a6fa5;
-    --color-qr: #b8a9c9;
-    --color-warm: #d4a574;
-    --color-secundario: #3d5068;
-    --color-white: #ffffff;
-    --color-light-gray: #dfe6e9;
-    --shadow-soft: 0 4px 12px rgba(0,0,0,0.05);
-    --shadow-hover: 0 8px 20px rgba(0,0,0,0.1);
+  --color-texto: #2d3436;
+  --color-primario: #4a6fa5;
+  --color-qr: #b8a9c9;
+  --color-warm: #d4a574;
+  --color-secundario: #3d5068;
+  --color-white: #ffffff;
+  --color-light-gray: #dfe6e9;
+  --shadow-soft: 0 4px 12px rgba(0,0,0,0.05);
+  --shadow-hover: 0 8px 20px rgba(0,0,0,0.1);
 }
 
-/* RESET Y ESTILOS GENERALES */
+/* ==========================================================================
+   RESET Y ESTILOS GENERALES
+   ========================================================================== */
 * {
   margin: 0;
   padding: 0;
@@ -30,12 +34,17 @@ body {
   padding: 20px;
 }
 
-/* HEADER ADAPTABLE */
+/* ==========================================================================
+   HEADER Y ENCABEZADO
+   ========================================================================== */
 .header-container {
   width: 100%;
   max-width: 1200px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .encabezado {
@@ -47,20 +56,25 @@ body {
 }
 
 .logo {
-    width: 100%;
-    height: auto;
-    max-height: 120px;
-    object-fit: contain;
-    margin: 0 auto 10px;
+  width: 100%;
+  height: auto;
+  max-height: 120px;
+  object-fit: contain;
+  margin: 0 auto 10px;
 }
 
 .descripcion {
-            color: white;
-            margin-bottom: 30px;
-            padding: 0 20px;
-        }
+  color: var(--color-white);
+  margin-bottom: 30px;
+  padding: 0 20px;
+  text-align: center;
+  font-size: 1rem;
+  line-height: 1.8;
+}
 
-/* CONTENEDOR PRINCIPAL */
+/* ==========================================================================
+   CONTENEDOR PRINCIPAL
+   ========================================================================== */
 .container {
   width: 100%;
   max-width: 800px;
@@ -70,12 +84,19 @@ body {
   gap: 25px;
 }
 
-/* TARJETAS DE QR */
+/* ==========================================================================
+   TARJETAS DEL LINK BIO (GRID Y TAMAÑOS UNIFORMES)
+   ========================================================================== */
 .qr-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  /* Fuerza a que siempre sean 2 columnas en escritorio */
+  grid-template-columns: repeat(2, 1fr); 
   gap: 25px;
   width: 100%;
+  /* Limita el ancho máximo para que no se estiren de más en PC */
+  max-width: 650px; 
+  /* Centra todo el bloque de tarjetas */
+  margin: 0 auto; 
 }
 
 .qr-card {
@@ -85,6 +106,11 @@ body {
   box-shadow: 0 5px 15px rgba(0,0,0,0.08);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   text-align: center;
+  
+  /* ESTO ES CLAVE PARA QUE TODAS MIDAN LO MISMO */
+  display: flex;
+  flex-direction: column;
+  height: 100%; 
 }
 
 .qr-card:hover {
@@ -95,32 +121,80 @@ body {
 .qr-card a {
   text-decoration: none;
   color: inherit;
-  display: block;
+  display: flex;
+  flex-direction: column;
   padding: 25px;
+  height: 100%; /* Obliga al enlace a ocupar todo el alto de la tarjeta */
+  justify-content: flex-start;
 }
 
 .qr-img {
   width: 100%;
-  max-width: 200px;
+  max-width: 120px; /* Tamaño estandarizado para los íconos/logos */
   height: auto;
   margin: 0 auto 15px;
   border-radius: 10px;
 }
 
-.qr-title {
-  font-size: 1.3rem;
-  color: var(--color-primario);
+/* En celulares, vuelve a 1 sola columna */
+@media (max-width: 600px) {
+  .qr-grid {
+    grid-template-columns: 1fr;
+    max-width: 100%;
+  }
+}
+
+/* ==========================================================================
+   TEXTOS Y ETIQUETAS DENTRO DE LA TARJETA
+   ========================================================================== */
+.qr-content {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Hace que el contenido llene el espacio disponible */
+}
+
+/* Etiquetas (Badges) para diferenciar Productos de Servicios */
+.badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.7rem;
   font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0 auto 10px auto; /* Centrado */
+}
+
+.badge-producto {
+  background-color: var(--color-qr);
+  color: var(--color-white);
+}
+
+.badge-servicio {
+  background-color: var(--color-warm);
+  color: var(--color-white);
+}
+
+/* Título Principal */
+.qr-main-title {
+  font-size: 1.25rem;
+  color: var(--color-primario);
+  font-weight: 800;
   margin-bottom: 8px;
+  line-height: 1.2;
 }
 
-.qr-description {
+/* Subtítulo o Descripción */
+.qr-subtitle {
   color: var(--color-texto);
-  font-size: 0.95rem;
-  opacity: 0.9;
+  font-size: 0.9rem;
+  opacity: 0.8;
 }
 
-/* PÁGINA INDIVIDUAL QR */
+/* ==========================================================================
+   PÁGINAS INDIVIDUALES (Si usas plantillas para los QR)
+   ========================================================================== */
 .qr-single-page {
   display: flex;
   justify-content: center;
@@ -152,7 +226,7 @@ body {
   margin-top: 25px;
   padding: 12px 30px;
   background: var(--color-primario);
-  color: var(--color-secundario);
+  color: var(--color-white); /* Corregido para que el texto sea legible */
   border-radius: 50px;
   text-decoration: none;
   font-weight: 600;
@@ -164,17 +238,30 @@ body {
   transform: scale(1.05);
 }
 
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
 footer {
-            margin-top: 40px;
-            color: white;
-            font-size: 0.85rem;
-            justify-content: center;
-        }
+  margin-top: 40px;
+  color: var(--color-white);
+  font-size: 0.85rem;
+  width: 100%; /* Ocupa todo el ancho */
+  display: flex;
+  justify-content: center; /* Centra el div interno */
+}
 
-/* RESPONSIVE ADICIONAL */
+.footer-copyright {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  text-align: center;
+}
+/* ==========================================================================
+   RESPONSIVE (Adaptación a pantallas pequeñas)
+   ========================================================================== */
 @media (max-width: 500px) {
   .qr-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* 1 sola columna en celulares */
   }
   
   .qr-single-container {
@@ -187,8 +274,7 @@ footer {
     max-height: 200px;
   }
   
-  .qr-card {
-    padding: 15px;
+  .qr-card a {
+    padding: 15px; /* Menos relleno en pantallas ultra pequeñas */
   }
 }
-
