@@ -1,5 +1,5 @@
 /* ==========================================================================
-   VARIABLES GLOBALES
+   1. VARIABLES GLOBALES Y RESET
    ========================================================================== */
 :root {
   --color-fondo: #f7f8fa;
@@ -11,13 +11,8 @@
   --color-white: #ffffff;
   --shadow-soft: 0 4px 12px rgba(0,0,0,0.05);
   --shadow-hover: 0 8px 20px rgba(0,0,0,0.15);
-  --card-width: 280px; 
-  --card-gap: 30px;
 }
 
-/* ==========================================================================
-   RESET Y ESTILOS GENERALES
-   ========================================================================== */
 * {
   margin: 0;
   padding: 0;
@@ -36,10 +31,8 @@ body {
 }
 
 /* ==========================================================================
-   BLOQUE 1: ESTILOS EXCLUSIVOS DEL INDEX (LINK BIO)
+   2. ESTILOS DE LA PÁGINA PRINCIPAL (INDEX)
    ========================================================================== */
-
-/* Header y Encabezado */
 .header-container {
   width: 100%;
   max-width: 1000px;
@@ -72,21 +65,19 @@ body {
   line-height: 1.8;
 }
 
-/* Contenedor Principal y Grid de Tarjetas */
 .container {
   width: 100%;
-  max-width: calc((var(--card-width) * 2) + var(--card-gap)); 
+  max-width: 620px; /* Ajustado para mantener las 2 columnas perfectas */
   margin-bottom: 40px;
 }
 
 .qr-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Fuerza 2 columnas en PC */
-  gap: var(--card-gap);
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
   width: 100%;
 }
 
-/* Tarjetas Individuales del Index */
 .qr-card {
   background: var(--color-fondo);
   border-radius: 15px;
@@ -106,13 +97,13 @@ body {
   color: inherit;
   display: flex;
   flex-direction: column;
-  padding: 30px 20px;
+  padding: 25px 15px;
   width: 100%;
 }
 
 .qr-img-container {
   width: 100%;
-  height: 100px;
+  height: 90px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -120,12 +111,11 @@ body {
 }
 
 .qr-img {
-  max-width: 90px;
-  max-height: 90px;
+  max-width: 80px;
+  max-height: 80px;
   object-fit: contain;
 }
 
-/* Textos y Etiquetas de las Tarjetas */
 .qr-content {
   display: flex;
   flex-direction: column;
@@ -137,89 +127,94 @@ body {
   display: inline-block;
   padding: 4px 14px;
   border-radius: 20px;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
-.badge-producto {
-  background-color: var(--color-qr);
-  color: var(--color-white);
-}
-
-.badge-servicio {
-  background-color: var(--color-warm);
-  color: var(--color-white);
-}
+.badge-producto { background-color: var(--color-qr); color: var(--color-white); }
+.badge-servicio { background-color: var(--color-warm); color: var(--color-white); }
 
 .qr-main-title {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   color: var(--color-primario);
   font-weight: 800;
-  margin-bottom: 8px;
+  margin-bottom: 5px;
   line-height: 1.2;
 }
 
 .qr-subtitle {
   color: var(--color-texto);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   opacity: 0.8;
 }
 
 /* ==========================================================================
-   BLOQUE 2: ESTILOS EXCLUSIVOS DE LAS SUBPÁGINAS (QRs INDIVIDUALES)
+   3. ESTILOS DE LAS SUBPÁGINAS (EXACTAMENTE COMO TU CAPTURA)
    ========================================================================== */
-
-/* Contenedor de la subpágina (ej. instagram.html) */
 .qr-single-page {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
   width: 100%;
+  min-height: calc(100vh - 100px); /* Ajuste para que no choque con el header */
 }
 
 .qr-single-container {
   background: var(--color-fondo);
   border-radius: 20px;
-  padding: 40px 30px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+  padding: 40px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
   text-align: center;
-  max-width: 400px;
+  max-width: 450px;
   width: 100%;
 }
 
+/* Tamaño exacto del QR en la subpágina */
 .qr-single-img {
   width: 100%;
-  max-width: 250px;
+  max-width: 280px;
   height: auto;
-  margin: 0 auto 25px;
-  border-radius: 15px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  margin: 0 auto 20px;
+  display: block;
 }
 
-/* Botón de volver al inicio (Corregido para que el texto sea blanco) */
+/* Títulos de la subpágina */
+.qr-single-container h1 {
+  font-size: 1.8rem;
+  color: var(--color-secundario);
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.qr-single-container p {
+  color: var(--color-texto);
+  font-size: 1rem;
+  margin-bottom: 25px;
+}
+
+/* Botón "Volver al inicio" (Exacto a tu captura) */
 .back-button {
   display: inline-block;
-  margin-top: 20px;
-  padding: 12px 30px;
-  background: var(--color-primario);
-  color: var(--color-white) !important; 
+  padding: 12px 35px;
+  background-color: var(--color-primario);
+  color: var(--color-white) !important;
   border-radius: 50px;
   text-decoration: none;
   font-weight: 600;
-  transition: all 0.3s ease;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  border: none;
 }
 
 .back-button:hover {
-  background: var(--color-secundario);
-  transform: scale(1.05);
+  background-color: var(--color-secundario);
 }
 
 /* ==========================================================================
-   BLOQUE 3: FOOTER (Compartido)
+   4. FOOTER Y RESPONSIVE
    ========================================================================== */
 .footer {
   margin-top: auto;
@@ -239,18 +234,9 @@ body {
   gap: 5px;
 }
 
-/* ==========================================================================
-   BLOQUE 4: RESPONSIVE (Celulares)
-   ========================================================================== */
 @media (max-width: 650px) {
   .qr-grid {
-    grid-template-columns: 1fr; /* 1 columna en celular */
-  }
-  .container {
-    max-width: 100%;
-  }
-  .encabezado {
-    max-height: 180px;
+    grid-template-columns: 1fr;
   }
   .qr-single-container {
     padding: 30px 20px;
