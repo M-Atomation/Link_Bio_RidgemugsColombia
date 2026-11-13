@@ -6,16 +6,17 @@
     <title>Link Bio Ridgemugs | Productos Personalizados y Servicios TI</title>
     <meta name="description" content="Personalizamos termos, tazas y botellas. Además, ofrecemos soporte TI, reparación de computadores e impresoras, cámaras de seguridad y desarrollo web.">
     
+    <!-- Recursos -->
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/svg" href="images/logo_2.svg">
 </head>
 
 <body>
   <!-- ENCABEZADO -->
-  <div class="header-container">
-    <img src="images/baner_negro_v2.svg" alt="Encabezado" class="encabezado">
-    <img src="images/logo_2.svg" alt="Logo" class="logo">
-  </div>
+  <header class="header-container">
+    <img src="images/baner_negro_v2.svg" alt="Banner Ridgemugs" class="encabezado">
+    <img src="images/logo_2.svg" alt="Logo Ridgemugs" class="logo">
+  </header>
 
   <!-- DESCRIPCIÓN -->
   <p class="descripcion">
@@ -25,56 +26,70 @@
     📦 Envíos en Bogotá - Colombia
   </p>
   
-  <!-- TARJETAS -->
-  <div class="container">
+  <!-- CONTENEDOR DE TARJETAS -->
+  <main class="container">
     <div class="qr-grid">
-      <!-- Tarjeta 1 -->
-      <div class="qr-card">
+
+      <!-- TARJETA 1: EMPRENDIMIENTO -->
+      <article class="qr-card">
         <a href="website.html">
-          <img src="images/website_black.svg" alt="Catálogo" class="qr-img">
+          <div class="qr-img-container">
+            <img src="images/website_black.svg" alt="Catálogo de productos" class="qr-img">
+          </div>
           <div class="qr-content">
             <span class="badge badge-producto">Emprendimiento</span>
             <h3 class="qr-main-title">Personaliza tus ideas</h3>
             <p class="qr-subtitle">Mugs, termos y botellas</p>
           </div>
         </a>
-      </div>        
-      <!-- Tarjeta 2 -->
-      <div class="qr-card">
+      </article>        
+
+      <!-- TARJETA 2: SERVICIOS TI -->
+      <article class="qr-card">
         <a href="website_personal.html">
-          <img src="images/logoMA.svg" alt="Servicios TI" class="qr-img">
+          <div class="qr-img-container">
+            <!-- ⚠️ VERIFICA QUE ESTA IMAGEN EXISTA EN TU CARPETA 'images' -->
+            <img src="images/logoMA.svg" alt="Servicios TI" class="qr-img">
+          </div>
           <div class="qr-content">
             <span class="badge badge-servicio">Servicios TI</span>
             <h3 class="qr-main-title">☕ Invítame un café</h3>
             <p class="qr-subtitle">Soporte, reparación y más</p>
           </div>
         </a>
-      </div>      
-      <!-- Tarjeta 3 -->
-      <div class="qr-card">
+      </article>      
+
+      <!-- TARJETA 3: WHATSAPP -->
+      <article class="qr-card">
         <a href="whatsapp.html">
-          <img src="images/wab_black.svg" alt="WhatsApp" class="qr-img">
+          <div class="qr-img-container">
+            <img src="images/wab_black.svg" alt="WhatsApp" class="qr-img">
+          </div>
           <div class="qr-content">
             <h3 class="qr-main-title">WhatsApp</h3>
             <p class="qr-subtitle">Contáctame directamente</p>
           </div>
         </a>
-      </div>      
-      <!-- Tarjeta 4 -->
-      <div class="qr-card">
+      </article>      
+
+      <!-- TARJETA 4: INSTAGRAM -->
+      <article class="qr-card">
         <a href="instagram.html">
-          <img src="images/ig_black.svg" alt="Instagram" class="qr-img">
+          <div class="qr-img-container">
+            <img src="images/ig_black.svg" alt="Instagram" class="qr-img">
+          </div>
           <div class="qr-content">
             <h3 class="qr-main-title">Instagram</h3>
             <p class="qr-subtitle">Sígueme para ver diseños</p>
           </div>
         </a>
-      </div>     
-    </div>
-  </div>
+      </article>     
 
-  <!-- FOOTER (Ahora sí, dentro del body) -->
-  <footer>
+    </div>
+  </main>
+
+  <!-- PIE DE PÁGINA -->
+  <footer class="footer">
     <div class="footer-copyright">
       <span>©</span>
       <span id="currentYear"></span>
@@ -87,9 +102,9 @@
     </div>
   </footer>
 
+  <!-- SCRIPTS -->
   <script>
-    const yearSpan = document.getElementById('currentYear');
-    if (yearSpan) yearSpan.innerText = new Date().getFullYear();
+    document.getElementById('currentYear').innerText = new Date().getFullYear();
   </script>
 </body>
 </html>
