@@ -2,6 +2,7 @@
    VARIABLES GLOBALES
    ========================================================================== */
 :root {
+  /* Colores */
   --color-fondo: #f7f8fa;
   --color-texto: #2d3436;
   --color-primario: #4a6fa5;
@@ -9,9 +10,14 @@
   --color-warm: #d4a574;
   --color-secundario: #3d5068;
   --color-white: #ffffff;
-  --color-light-gray: #dfe6e9;
+  
+  /* Sombras */
   --shadow-soft: 0 4px 12px rgba(0,0,0,0.05);
-  --shadow-hover: 0 8px 20px rgba(0,0,0,0.1);
+  --shadow-hover: 0 8px 20px rgba(0,0,0,0.15);
+  
+  /* Layout */
+  --card-width: 280px; /* Tamaño máximo de cada tarjeta */
+  --card-gap: 30px;
 }
 
 /* ==========================================================================
@@ -39,83 +45,69 @@ body {
    ========================================================================== */
 .header-container {
   width: 100%;
-  max-width: 1200px;
-  margin-bottom: 20px;
+  max-width: 1000px;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 20px;
 }
 
 .encabezado {
   width: 100%;
-  height: auto;
-  max-height: 300px;
+  max-height: 250px;
   object-fit: contain;
-  margin: 0 auto 15px;
+  margin-bottom: 15px;
 }
 
 .logo {
   width: 100%;
-  height: auto;
-  max-height: 120px;
+  max-height: 100px;
   object-fit: contain;
-  margin: 0 auto 10px;
+  margin-bottom: 10px;
 }
 
 .descripcion {
   color: var(--color-white);
   margin-bottom: 30px;
-  padding: 0 20px;
   text-align: center;
   font-size: 1rem;
   line-height: 1.8;
 }
 
 /* ==========================================================================
-   CONTENEDOR PRINCIPAL
+   CONTENEDOR PRINCIPAL (GRID DE TARJETAS)
    ========================================================================== */
 .container {
   width: 100%;
-  max-width: 800px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 25px;
+  /* El max-width asegura que en PC se vean 2 columnas y no se estiren */
+  max-width: calc((var(--card-width) * 2) + var(--card-gap)); 
+  margin-bottom: 40px;
+}
+
+.qr-grid {
+  display: grid;
+  /* Fuerza a 2 columnas exactas, del mismo tamaño */
+  grid-template-columns: repeat(2, 1fr); 
+  gap: var(--card-gap);
+  width: 100%;
 }
 
 /* ==========================================================================
-   TARJETAS DEL LINK BIO (GRID Y TAMAÑOS UNIFORMES)
+   TARJETAS INDIVIDUALES
    ========================================================================== */
-.qr-grid {
-  display: grid;
-  /* Fuerza a que siempre sean 2 columnas en escritorio */
-  grid-template-columns: repeat(2, 1fr); 
-  gap: 25px;
-  width: 100%;
-  /* Limita el ancho máximo para que no se estiren de más en PC */
-  max-width: 650px; 
-  /* Centra todo el bloque de tarjetas */
-  margin: 0 auto; 
-}
-
 .qr-card {
   background: var(--color-fondo);
   border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+  box-shadow: var(--shadow-soft);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   text-align: center;
-  
-  /* ESTO ES CLAVE PARA QUE TODAS MIDAN LO MISMO */
-  display: flex;
-  flex-direction: column;
-  height: 100%; 
+  display: flex; /* Permite que el contenido crezca */
 }
 
 .qr-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-hover);
 }
 
 .qr-card a {
@@ -123,47 +115,45 @@ body {
   color: inherit;
   display: flex;
   flex-direction: column;
-  padding: 25px;
-  height: 100%; /* Obliga al enlace a ocupar todo el alto de la tarjeta */
-  justify-content: flex-start;
+  padding: 30px 20px;
+  width: 100%;
+}
+
+/* Contenedor de la imagen para estandarizar su tamaño */
+.qr-img-container {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
 }
 
 .qr-img {
-  width: 100%;
-  max-width: 120px; /* Tamaño estandarizado para los íconos/logos */
-  height: auto;
-  margin: 0 auto 15px;
-  border-radius: 10px;
-}
-
-/* En celulares, vuelve a 1 sola columna */
-@media (max-width: 600px) {
-  .qr-grid {
-    grid-template-columns: 1fr;
-    max-width: 100%;
-  }
+  max-width: 90px;
+  max-height: 90px;
+  object-fit: contain;
 }
 
 /* ==========================================================================
-   TEXTOS Y ETIQUETAS DENTRO DE LA TARJETA
+   TEXTOS Y ETIQUETAS
    ========================================================================== */
 .qr-content {
-  padding: 0;
   display: flex;
   flex-direction: column;
-  flex-grow: 1; /* Hace que el contenido llene el espacio disponible */
+  align-items: center;
+  flex-grow: 1; /* Hace que el contenido llene el espacio de la tarjeta */
 }
 
-/* Etiquetas (Badges) para diferenciar Productos de Servicios */
 .badge {
   display: inline-block;
-  padding: 4px 12px;
+  padding: 4px 14px;
   border-radius: 20px;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  margin: 0 auto 10px auto; /* Centrado */
+  margin-bottom: 12px;
 }
 
 .badge-producto {
@@ -176,16 +166,14 @@ body {
   color: var(--color-white);
 }
 
-/* Título Principal */
 .qr-main-title {
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   color: var(--color-primario);
   font-weight: 800;
   margin-bottom: 8px;
   line-height: 1.2;
 }
 
-/* Subtítulo o Descripción */
 .qr-subtitle {
   color: var(--color-texto);
   font-size: 0.9rem;
@@ -193,88 +181,40 @@ body {
 }
 
 /* ==========================================================================
-   PÁGINAS INDIVIDUALES (Si usas plantillas para los QR)
+   FOOTER (Centrado y siempre al fondo)
    ========================================================================== */
-.qr-single-page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  padding: 20px;
-  background: linear-gradient(135deg, var(--color-primario), var(--color-secundario));
-}
-
-.qr-single-container {
-  background: var(--color-fondo);
-  border-radius: 20px;
-  padding: 40px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
-  text-align: center;
-  max-width: 400px;
-  width: 100%;
-}
-
-.qr-single-img {
-  width: 100%;
-  max-width: 280px;
-  margin: 0 auto 25px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-.back-button {
-  display: inline-block;
-  margin-top: 25px;
-  padding: 12px 30px;
-  background: var(--color-primario);
-  color: var(--color-white); /* Corregido para que el texto sea legible */
-  border-radius: 50px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
-
-.back-button:hover {
-  background: var(--color-secundario);
-  transform: scale(1.05);
-}
-
-/* ==========================================================================
-   FOOTER
-   ========================================================================== */
-footer {
-  margin-top: 40px;
+.footer {
+  margin-top: auto;
   color: var(--color-white);
   font-size: 0.85rem;
-  width: 100%; /* Ocupa todo el ancho */
+  width: 100%;
   display: flex;
-  justify-content: center; /* Centra el div interno */
+  justify-content: center;
+  padding-top: 20px;
 }
 
 .footer-copyright {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  gap: 5px;
   text-align: center;
-}
-/* ==========================================================================
-   RESPONSIVE (Adaptación a pantallas pequeñas)
-   ========================================================================== */
-@media (max-width: 500px) {
-  .qr-grid {
-    grid-template-columns: 1fr; /* 1 sola columna en celulares */
-  }
-  
-  .qr-single-container {
-    padding: 30px 20px;
-  }
+  gap: 5px;
 }
 
-@media (max-width: 300px) {
-  .encabezado {
-    max-height: 200px;
+/* ==========================================================================
+   DISEÑO RESPONSIVE (CELULARES Y TABLETS)
+   ========================================================================== */
+@media (max-width: 650px) {
+  .qr-grid {
+    /* En celulares, 1 sola columna */
+    grid-template-columns: 1fr;
   }
   
-  .qr-card a {
-    padding: 15px; /* Menos relleno en pantallas ultra pequeñas */
+  .container {
+    max-width: 100%;
+  }
+  
+  .encabezado {
+    max-height: 180px;
   }
 }
