@@ -36,8 +36,10 @@ body {
 }
 
 /* ==========================================================================
-   HEADER Y ENCABEZADO
+   BLOQUE 1: ESTILOS EXCLUSIVOS DEL INDEX (LINK BIO)
    ========================================================================== */
+
+/* Header y Encabezado */
 .header-container {
   width: 100%;
   max-width: 1000px;
@@ -70,9 +72,7 @@ body {
   line-height: 1.8;
 }
 
-/* ==========================================================================
-   CONTENEDOR PRINCIPAL (GRID DE TARJETAS)
-   ========================================================================== */
+/* Contenedor Principal y Grid de Tarjetas */
 .container {
   width: 100%;
   max-width: calc((var(--card-width) * 2) + var(--card-gap)); 
@@ -81,14 +81,12 @@ body {
 
 .qr-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); 
+  grid-template-columns: repeat(2, 1fr); /* Fuerza 2 columnas en PC */
   gap: var(--card-gap);
   width: 100%;
 }
 
-/* ==========================================================================
-   TARJETAS INDIVIDUALES
-   ========================================================================== */
+/* Tarjetas Individuales del Index */
 .qr-card {
   background: var(--color-fondo);
   border-radius: 15px;
@@ -127,9 +125,7 @@ body {
   object-fit: contain;
 }
 
-/* ==========================================================================
-   TEXTOS Y ETIQUETAS DE LAS TARJETAS
-   ========================================================================== */
+/* Textos y Etiquetas de las Tarjetas */
 .qr-content {
   display: flex;
   flex-direction: column;
@@ -173,7 +169,57 @@ body {
 }
 
 /* ==========================================================================
-   FOOTER
+   BLOQUE 2: ESTILOS EXCLUSIVOS DE LAS SUBPÁGINAS (QRs INDIVIDUALES)
+   ========================================================================== */
+
+/* Contenedor de la subpágina (ej. instagram.html) */
+.qr-single-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.qr-single-container {
+  background: var(--color-fondo);
+  border-radius: 20px;
+  padding: 40px 30px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+}
+
+.qr-single-img {
+  width: 100%;
+  max-width: 250px;
+  height: auto;
+  margin: 0 auto 25px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Botón de volver al inicio (Corregido para que el texto sea blanco) */
+.back-button {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 30px;
+  background: var(--color-primario);
+  color: var(--color-white) !important; 
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.back-button:hover {
+  background: var(--color-secundario);
+  transform: scale(1.05);
+}
+
+/* ==========================================================================
+   BLOQUE 3: FOOTER (Compartido)
    ========================================================================== */
 .footer {
   margin-top: auto;
@@ -194,16 +240,19 @@ body {
 }
 
 /* ==========================================================================
-   RESPONSIVE
+   BLOQUE 4: RESPONSIVE (Celulares)
    ========================================================================== */
 @media (max-width: 650px) {
   .qr-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* 1 columna en celular */
   }
   .container {
     max-width: 100%;
   }
   .encabezado {
     max-height: 180px;
+  }
+  .qr-single-container {
+    padding: 30px 20px;
   }
 }
